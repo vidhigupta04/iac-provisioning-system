@@ -1,15 +1,21 @@
+import os
+from dotenv import load_dotenv
+from flask import Flask
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import mysql.connector
+
+
+load_dotenv()
 
 app = Flask(__name__)
 CORS(app)
 
 db_config = {
-    'host': '127.0.0.1',
-    'user': 'root',
-    'password': 'password', 
-    'database': 'agriculture_db'
+    'host': os.getenv('DB_HOST'),
+    'user': os.getenv('DB_USER'),
+    'password': os.getenv('DB_PASSWORD'), 
+    'database': os.getenv('DB_NAME')
 }
 
 @app.route('/api/login', methods=['POST'])
