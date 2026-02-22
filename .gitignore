@@ -1,0 +1,19 @@
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
+
+# Keys
+*.pem
+
+# Environment
+.env
+nano .env
+
+# Python
+__pycache__/
+*.pyc
+
+# Node
+node_modules/

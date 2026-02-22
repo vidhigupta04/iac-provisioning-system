@@ -12,10 +12,10 @@ app = Flask(__name__)
 CORS(app)
 
 db_config = {
-    'host': os.getenv('DB_HOST'),
-    'user': os.getenv('DB_USER'),
-    'password': os.getenv('DB_PASSWORD'), 
-    'database': os.getenv('DB_NAME')
+    'host': os.getenv('DB_HOST' , 'iac-db'),
+    'user': os.getenv('DB_USER', 'root'),
+    'password': os.getenv('DB_PASSWORD' , 'vidhi'), 
+    'database': 'agriculture_db'
 }
 
 @app.route('/api/login', methods=['POST'])
@@ -56,4 +56,4 @@ def manage_crops():
         return jsonify({"error": str(err)}), 500
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    app.run(host='0.0.0.0', port=5000, debug=True)

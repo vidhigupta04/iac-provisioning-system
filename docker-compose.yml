@@ -1,0 +1,22 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: iac-db
+    environment:
+      MYSQL_ROOT_PASSWORD: vidhi
+      MYSQL_DATABASE: agriculture_db
+    volumes:
+      - ./mysql/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+
+  backend:
+    build: ./backend
+    container_name: iac-backend
+    ports:
+      - "5001:5000"
+    environment:
+      - DB_HOST=db
+      - DB_USER=root
+      - DB_PASSWORD=vidhi
+      - DB_NAME=agriculture_db
+    depends_on:
+      - db
